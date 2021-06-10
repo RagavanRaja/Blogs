@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./patials/header.ejs') %>
+  <body>
+    <%- include('./patials/nav.ejs') %>
+
+    <div class="detailss content">
+      <h2><%= blog.title%></h2>
+        <div class="content">
+            <p><%= blog.body%></p>
+        </div>
+        <a class="delete" data-doc="<% blog._id%>">Delete</a>
+    </div>
+    <%- include('./patials/footer.ejs') %>
+    <script>
+      const trashcan=document.querySelector('a.delete');
+      fetch(endpoint,{
+        method:'DELETE'
+      })
+      .then((response)=>response.json())
+      .then((data)=>console.log(data))
+      .catch(err=>console.log(err));
+    </script>
+  </body>
+</html>
